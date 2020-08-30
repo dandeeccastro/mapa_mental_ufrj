@@ -1,0 +1,2 @@
+# Funções Horárias
+Essas funções são as que descrevem alguma propriedade da partícula ([[Deslocamento e Velocidade	|velocidade]], [[Aceleração|aceleração]]) em função de um **intervalo de tempo** (conhecido como $\Delta t$). Elas geralmente podem ser medidas/ modeladas ou calculadas derivando ou integrando outras funções horárias.
