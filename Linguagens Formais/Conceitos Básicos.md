@@ -1,4 +1,4 @@
-# Conceitos Básicos
+1# Conceitos Básicos
 ## Alfabetos
 Alfabetos são um conjunto finito e não-vazio de símbolos. Podemos representar alfabetos em notação matemática da seguinte forma: 
 

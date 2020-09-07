@@ -4,7 +4,7 @@ Dump de anotação de aulas + ementa do curso com índice para os resumos
 ## Índice
 - [[Noções Básicas sobre Erros]]
 	- [[Conversão Decimal - Binária | Representando Números ]]
-	- Erros na Representação
+	- [[Erros|Erros na Representação]]
 - Zeros Reais de Funções Reais
 	- Isolamento de Raízes
 	- Refinamento
@@ -22,3 +22,7 @@ Dump de anotação de aulas + ementa do curso com índice para os resumos
 	- Localização de Raízes
 	- Determinação de Raízes Reais
 	- Método de Newton para Zeros de Polinômios
+- Interpolação
+- Método dos Mínimos Quadrados
+- Integração Numérica
+- Resolução Numérica de EDO's

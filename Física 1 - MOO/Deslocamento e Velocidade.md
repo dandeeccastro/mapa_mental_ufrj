@@ -10,14 +10,14 @@ Vale lembrar que a pessoa pode ter se mexido mas ter tido _zero deslocamento_, q
 ### Velocidade Média
 É a razão entre o deslocamento e o tempo que a partícula tomou para realizar algum (ou nenhum) movimento num espaço de tempo.
 
-$$v = \frac{\Delta x}{\Delta y} = \frac{x_2 - x_1}{t_2 - t_1}$$
+$$v_m = \frac{\Delta x}{\Delta y} = \frac{x_2 - x_1}{t_2 - t_1}$$
 
 ### Velocidade Instantânea
 Quando o intervalo de tempo é pequeno o suficiente para gente não ser capaz de medir as mudanças na velocidade da partícula.
 
 Podemos montar a fórmula dessa velocidade instantânea a partir da fórmula da média:
 
-$$v = \frac{\Delta x}{\Delta y} = \frac{x_2 - x_1}{t_2 - t_1}$$
+$$v_m = \frac{\Delta x}{\Delta y} = \frac{x_2 - x_1}{t_2 - t_1}$$
 
 Para isso, mudaremos alguns nomes para que certas igualdades possam ser percebidas. Primeiro transformamos em $t_0$ o **tempo inicial** e descrevemos $t_2$ usando ele e o tempo que demorou para completar o movimento, ou seja, $\Delta t$
 $$t_1=t_0$$

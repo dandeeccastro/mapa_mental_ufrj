@@ -9,7 +9,10 @@ Retas não podem simplesmente existir no vazio, então também temos um _ponto_ 
 
 Existe um **vetor nulo**, que não tem direção nem sentido, pois a norma dele é zero. Geralmente denotamos ele como 0 (zero)
 
-Existe também um vetor simétrico, que é essencialmente um vetor idêntico ao que temos, mas com sentido oposto. Considerando o vetor $v$, pode ser denotado o simétrico de $v$ como $\bar{v}$ ou $-v$
+Existe também um vetor simétrico, que é essencialmente um vetor idêntico ao que temos, mas com sentido oposto. Considerando o vetor $v$, pode ser denotado o simétrico de $v$ como $\bar{v}$ ou $-v$.
+
+### Nota
+Na física, vetores não são só representados como letras, mas também contendo uma seta em cima do item em questão, por exemplo em $\overrightarrow{v}$.
 ## Operações
 ### Adição
 Como vetores existem num plano e originam do mesmo ponto, podemos somá-los montando um _paralelogramo_ no plano. Isto é, dado um vetor _v_ e outro vetor _u_, podemos descobrir _v+u_ se:

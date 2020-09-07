@@ -1,15 +1,22 @@
 # Aritmética de Ponto Flutuante
 ## Como fica no PC
-Quando lidamos com números de ponto flutuante, o computador armazena eles de uma forma bem específica no computador:
+O padrão utilizado para armazenar números em um computador foi criado pela IEEE, com sua última revisão em 2008. Nessa representação, temos 3 componentes: 
+- $s$ é o bit reservado para o sinal do número (positivo ou negativo)
+- $c$ é chamado de **característica**, e representa o expoente da base
+- $m$ é chamado de **mantissa**, e representa o número em versão fracionária
 
-$$(.d_1d_2d_3...d_t)*\beta^\epsilon$$
+Se estamos lidando com um computador de 64 bits, por exemplo, segundo a IEEE, temos 1 bit de sinal, 11 bits na característica e 52 bits na mantissa. Convertendo para decimais, temos aproximadamente:
+- $0 \leq c \leq 2^{11} - 1 => 0 \leq c \leq 2047$, caso $c$ não possua sinal.
+- $-1023 \leq c \leq 1024$ para números com sinais
 
-Nesse caso, armazenamos _t_ dígitos na mantissa, definimos qual a base com _beta_ e o _epsilon_ sendo o expoente
+Normalizar o número faz mais sentido, para garantir representação única entre eles e otimizar armazenamento, então a fórmula final para a representação é
 
-Se quiséssemos armazenar o número 301.34, teríamos
+$$(-1)^s*2^{c-1023}*(1+m)$$
 
-$$(.30134)*10^3$$
+Para os propósitos desse estudo, vale considerarmos a **característica** e **mantissa** como independentes da base binária, e, consequentemente, da [[Conversão Decimal - Binária|conversão para decimal]]. E também, não é todo sistema que é alinhado com a IEEE.
 
+Dessa forma, podemos interpretar números decimais da seguinte forma:
+$$(-1)^s*10^c*(1+m)$$
 ## Limites
 Esse método de armazenamento tem números máximos e mínimos, dado que o tamanho da mantissa depende do sistema que você está usando. 
 
