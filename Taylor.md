@@ -1,0 +1,15 @@
+# Séries de Taylor
+- Como obtemos a série?
+	- Teorema Fundamental do Cálculo: se temos uma função $f$ contínua, a integral da derivada de $f$ no intervalo entre $a$ e $x$ é $f(x) - f(a)$
+	- Podemos usar a igualdade separando $f(x)$ no canto e fazendo integração por partes
+	- Quanto mais integrações por partes fazemos, mais e mais nos aprofundamos na série de Taylor
+	- Resultado Final: Somatório gigante de derivadas de graus diferentes 
+	- Dá pra tanto obter um Polinômio com grau $n$ ($n$ iterações da soma) quanto o Erro do Polinômio, que é o resto de integral que sobra do somatório
+		- $E_n(x) = (-1)^n \int^x_a\frac{(t-x)^n}{n!}f^{n+1}(t)dt$
+- Interpretação gráfica
+	- Integral de $f(x)$ é área de $0$ a $x$, mesma coisa para $a$
+	- Se temos $f(a) + (x - a)f'(a)$, obtemos a área de $f(a)$ porque ele tá lá, mais um retângulo entre $a$ e $x$ com altura de $f'(a)$
+	- $f(a) + (x - a)f'(a) + \frac{(x - a)^2}{2}f''(a)$: Adicionamos um triângulo de base $(x - a)$ e altura $f''(a)(x - a)$
+		- Triângulo porque $Área = \frac{base \times altura }{2}$
+	- Próximo grau: parábola em cima do triângulo
+	- Quanto mais adicionamos, mais chegamos perto da área de $f(x)$

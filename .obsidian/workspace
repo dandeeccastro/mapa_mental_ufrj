@@ -4,55 +4,38 @@
     "type": "split",
     "children": [
       {
-        "id": "97e0a2a9c90420d8",
+        "id": "3a27a4b64264b4a9",
         "type": "split",
         "children": [
           {
-            "id": "c9f60f933ec46de9",
-            "type": "split",
-            "dimension": 67.74193548387096,
-            "children": [
-              {
-                "id": "df63b93a6d77a978",
-                "type": "leaf",
-                "active": true,
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Cálculo Numérico/Cálculo Numérico.md",
-                    "mode": "source"
-                  }
-                },
-                "group": "80f6e911236aaea7"
-              },
-              {
-                "id": "17931c7371a76b07",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Cálculo Numérico/Cálculo Numérico.md",
-                    "mode": "preview"
-                  }
-                },
-                "group": "80f6e911236aaea7"
+            "id": "1c1f67b68c559da9",
+            "type": "leaf",
+            "dimension": 49.93464052287582,
+            "active": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Taylor.md",
+                "mode": "source"
               }
-            ],
-            "direction": "horizontal"
+            },
+            "group": "d4d8370f3e62ecaf"
           },
           {
-            "id": "6561fe26b55548d8",
+            "id": "df63b93a6d77a978",
             "type": "leaf",
-            "dimension": 32.25806451612903,
-            "pinned": true,
+            "dimension": 50.06535947712418,
             "state": {
-              "type": "graph",
-              "state": {},
-              "pinned": true
-            }
+              "type": "markdown",
+              "state": {
+                "file": "Taylor.md",
+                "mode": "preview"
+              }
+            },
+            "group": "d4d8370f3e62ecaf"
           }
         ],
-        "direction": "vertical"
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -78,7 +61,9 @@
             "type": "leaf",
             "state": {
               "type": "search",
-              "state": {}
+              "state": {
+                "query": ""
+              }
             }
           }
         ]
@@ -102,22 +87,41 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Cálculo Numérico/Cálculo Numérico.md"
+                "file": "Taylor.md"
               }
+            }
+          }
+        ]
+      },
+      {
+        "id": "4779c1dc159e65c7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6561fe26b55548d8",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 170,
+    "width": 304,
     "collapsed": true
   },
   "lastOpenFiles": [
-    "Cálculo Numérico/Cálculo Numérico.md",
-    "Linguagens Formais/Linguagens Formais.md",
-    "Fórmulas de Movimento Bi e Tridimensional.md",
+    "Taylor.md",
     "Untitled.md",
-    "Física 1 - MOO/Fórmulas de Deslocamento Unidimensional.md"
+    "Cálculo Numérico/Norma IEEE.md",
+    "Método da Posição Falsa.md",
+    "Método do Ponto Fixo.md",
+    "Método de Bisseção.md",
+    "Cálculo Numérico/Zeros de Funções.md",
+    "Cálculo Numérico/Arredondamento e Truncamento.md",
+    "Cálculo Numérico/Noções Básicas sobre Erros.md",
+    "Cálculo Numérico/Cálculo Numérico.md"
   ]
 }

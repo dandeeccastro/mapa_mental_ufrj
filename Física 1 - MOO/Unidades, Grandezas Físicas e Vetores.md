@@ -1,0 +1,14 @@
+# Unidades, Grandezas Físicas e Vetores
+- Com física, as medidas fundamentais são **massa**, **distância** e **tempo**. Com essas três bases dá pra montar todo o resto, e temos que tomar muito cuidado pra que não somemos unidades diferentes
+	- Segundo o SI, temos **metro** pra distância, **segundo** para tempo e **gramas** para massa
+- Grandezas escalares são números, e podem ser somados com grandezas aritméticas. Grandezas vetoriais tem que ser somadas usando regras de vetores
+	- Vetores possuem módulo, direção e sentido, e a soma deles pode mudar essas propriedades
+	- Podemos descrever vetores não unitários com vetores unitários. Eles são extra úteis se forem perpendiculares, para poderem representar os eixos x, y e z
+- **Produto Escalar**: O "grau de semelhança" entre dois vetores. Como o nome diz, o resultado da operação é um valor escalar
+	- $\overrightarrow{A}\cdot\overrightarrow{B} = |\overrightarrow{A}||\overrightarrow{B}|cos\theta$ 
+	- $\overrightarrow{A}\cdot\overrightarrow{B} = A_xB_x + A_yB_y +A_zB_z$ 
+- **Produto Vetorial**: O produto dessa operação é um vetor perpendicular tanto a $\overrightarrow{A}$ quanto a $\overrightarrow{B}$. 
+	- $\overrightarrow{C} = |\overrightarrow{A}||\overrightarrow{B}|sen\theta$ 
+		- $C_x = A_yB_z - A_zB_y$
+		- $C_y = A_zB_x - A_xB_z$
+		- $C_z = A_xB_y - A_yB_x$
