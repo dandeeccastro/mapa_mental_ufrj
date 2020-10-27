@@ -1,0 +1,37 @@
+# Exclusão Mútua Distribuída
+- Queremos acessar os mesmos recursos num sistema distribuído
+- Temos que garantir exclusão mútua dele para que cada qual tenha sua vez no pote de comida
+- Três tipos de algoritmos com esses problemas
+	- Algoritmo centralizado
+		- Escolhemos um processo como gerente do recurso
+		- Qualquer processo que quer acessar o recurso pede ao gerente, e o gerente retorna o status
+			- Se estiver bloqueado, ele não responde, deixando o nó em espera (ou pode mandar uma resposta negativa)
+				- Espera pode ser uma fila também
+			- Se estiver livre, ele dá o aval e atualiza o status do recurso como bloqueado
+		- Quando o processo termina de usar o recurso, ele avisa o gerente que tá ok
+		- Problemas com essa solução
+			- Único nó com isso, se ele falha ferrou
+			- Pode haver um gargalo 
+			- Além disso, se o gerente posterga a resposta, o processo pode ter dificuldade em dizer se o gerente falhou ou só não respondeu	
+			- Se o gerente sempre responde, o processo repete o envio até receber uma resposta ou só assumir que o gerente quebrou
+			- Quando recebe resposta negativa ele se bloqueia até receber o ok de novo
+	- Algoritmo Distribuido
+		- Permissão é pedida para todos os outros processos
+		- Precisa da ordenação total dos eventos para que possa ser sabido quem pediu primeiro o recurso
+		- Processo envia uma mensagem com o identificador do recurso, do processo e seu timestamp para todos os processos (olha aí o vetor de timestamp como vem)
+		- Se um processo recebe o pedido
+			- Ele não tá usando e não está interessado: ele dá OK
+			- Ele está usando o recurso: não responde e guarda requisição na fila (ou dá negativo, mas complica)
+				- Quando ele termina de acessar o recurso, ele envia OK para todos os processos na fila de espera
+			- Ele quer usar o recurso: Compara os timestamps. Se ele pediu antes, ele guarda a requisição numa fila, mas se ele pediu depois ele dá OK
+			- Problemas dessa solução
+				- N-1 mensagens quando temos N processos
+				- Existem N pontos de falha, porque se um cara não responde, não dá pra acessar o recurso (precisamos identificar as falhas)
+				- Precisamos de uma primitiva multicast ou cada processo tem que manter a lista de processos do grupo
+	- Algorítmo distribuído com token
+		- O processo que tem o token usa o recurso
+		- Quando ele termina, ele passa o token pra frente
+		- Se um processo pega o token mas não quer usar, ele passa para frente
+		- Temos que passar por todos os itens, então topologia em anel é uma opção para poder usar isso
+		- Dificuldades:
+			- Se perdemos o token, precisamos gerar um novo token e garantir que não tenham dois ao mesmo tempo

@@ -1,0 +1,38 @@
+# Nomeação Simples
+- Identificadores não trazem mais informações, nem sobre o ponto de acesso dele
+	- Solução simples e funciona bem em redes locais
+	- Tem três técnicas principais de implementação
+		- Difusão 
+		- Redirecionamento
+		- Hierárquica
+- Sobre a difusão
+	- Caracterização
+		- O **identificador da entidade** é difundido para todas as máquinas no sistema
+		- Cada máquina verifica se tem a entidade que tem esse identificador
+		- Curiosidade: isso é utilizado pelo protocolo ARP
+			- Talvez daí que sai o ARP Spoofing?
+	- Problemas
+		- Essa difusão de mensagens pode ser para todos (broadcast) ou para um subgrupo (multicast)
+			- Por causa disso não é um método viável para sistemas maiores
+			- Pode rolar sobrecarga na rede e interrupção de nós que não respondem à conexão 
+	- Endereços de difusão podem ser vistos como uma _localização geral_ de várias entidades
+- Sobre o redirecionamento
+	- Quando a entidade muda de ponto de acesso, ele deixa uma **referência de redirecionamento** no endereço antigo para o endereço atual
+	- Mapeamento de entidades é feito só uma vez, porque indo para um endereço antigo eventualmente chega no atual
+	- Problemas
+		- Uma corrente muito grande de redirecionamentos pode impactar bastante a performance à longo termo
+		- A morte de um processo na corrente faz com que seus processos subsequentes fiquem inacessíveis
+	- Você pode atualizar a referência de endereços se quando chegar no final, reparar que não terminou onde começou
+	- Ou você pode fazer uma localização base, que mantem o endereço atual de uma entidade importante nela
+		- Esforço a mais pra garantir que esse camarada fique atualizado
+	- Ou usamos IP móvel, que usa um IP fixo como identificador
+		- Quando tudo tá ok, o IP conecta com o agente base
+		- Quando o nó móvel muda para outra rede, ele pede um endereço temporário que é registrado no agente base
+		- Mensagem? O agente móvel reencaminha a mensagem pro endereço atual do nó móvel
+		- Isso é onde o papo do ARP funciona
+- Sobre a hierarquia de nós
+	- Vamos de cima para baixo numa estrutura de árvore
+	- O nó mais em cima pode encaminhar para domínios diferentes abaixo dele (ponteiros para nós mais abaixo)
+	- A folha do nó contém o endereço dela
+	- Acho que é aqui que se encaixa o DNS, mas não sei se se encaixa pra IP no geral, com o sistema de roteadores
+		- Vale pesquisar sobre

@@ -1,0 +1,119 @@
+# Gramáticas Livres de Contexto
+## Introdução / Definição
+- Enquanto Gramáticas Regulares tem mais restrições sobre o tipo de regra que aceitam, Gramáticas Livres de Contexto são mais livres
+- Única regra das regras: Tem que ter uma variável no lado esquerdo da seta
+	- Em matematiquês, as regras do conjunto $R$ tem que estar no seguinte formato: $X \to w$ onde $X \in V$ e $w \in (T \cup V)^*$
+	- Tecnicamente, todas as gramáticas regulares também são livres de contexto, mas a recíproca não é verdadeira
+	- Exemplos que provam isso
+		- $T = \{0,1\}, V = \{S,X\}, S = S$ e $R = \{S \to X1X,X \to 0X, X \to \epsilon\}$
+		- $T = \{0,1\}, V = \{S\}, S = S$ e $R = \{S \to 0S1, S \to \epsilon\}$
+		- Só há uma variável na esquerda, então é uma gramática livre de contexto
+		- Possui terminal à direita da variável, então não é regular
+	
+## De Gramática à Linguagem
+- Uma derivação de uma palavra $w$ para outra $w'$ onde as duas pertencem ao alfabeto $(T \cup V)^*$ acontece se os requisitos TODOS forem verdadeiros
+	- Tem uma decomposição $w = uXv$, onde $u,v$ fazem parte do alfabeto e $X \in V$
+	- Tem uma regra $X \to \alpha$ em $R$
+	- $w' = u\alpha v$
+- Derivação em um passo: $w \Rightarrow w'$
+- Derivação em vários passos: $w \Rightarrow^* w'$
+	- Isso é quando temos derivações intermediárias no meio do caminho
+	- w vai para w1 que vai para w2 que vai .... até chegar no w'
+- Definição da linguagem $L$ definida pela gramática livre de contexto $G$
+	- $L(G) = \{w \in T^*: há\ uma\ derivação\ S \Rightarrow^* w\ em\ G\}$
+	- Uma Linguagem é Livre de Contexto se há uma gramática livre de contexto que gere ela
+		- Em matematiquês: $L = L(G)$ onde $G$ é livre de contexto
+		
+## Provando as diferenças
+- Temos a gramática $T = \{0,1\}, V = \{S\}, S = S$ e $R = \{S \to 0S1, S \to \epsilon\}$
+	- Vemos que ou adicionamos 0 na esquerda e 1 na direita ou removemos o S e terminamos a computação
+	- Então se fizermos a operação n vezes, temos que $S \Rightarrow^n 0^nS1^n$
+	- E removendo S, temos que $S \Rightarrow 0^n1^n$ é uma forma geral de expressar a gramática aqui 
+	- Essa gramática não é regular, provamos isso anteriormente
+		- Prova prática que nem toda livre de contexto é regular
+- Também temos a gramática $T = \{0,1\}, V = \{S,X\}, S = S$ e $R = \{S \to X1X,X \to 0X, X \to \epsilon\}$
+	- Só tem um 1, e ele pode ter zeros indeterminados tanto na direita dele quanto na esquerda
+	- Podemos concluir que o formato dessa linguagem é $S \Rightarrow^* 0^n10^m$, onde $n,m \geq 0$
+		- Isso permite que $n,m$ sejam zero, contemplando computações que matam X direto
+	- Essa linguagem é regular, então podemos gerar linguagens regulares com livres de contexto, provando mais ainda o teorema abaixo.
+- Teorema: Mostraremos que gramáticas regulares são uma subclasse das gramáticas livres de contexto
+
+## E se L não for livre de contexto?
+- Voltando as regras da liberdade de contexto
+	- Só é livre de contexto se temos SOMENTE uma variável na esquerda da seta no nosso grupo de regras
+	- Ou seja, se temos uma linguagem cuja gramática admite regras com o formato, por exemplo, $Xb \to bX$, onde $X \in V, b \in T$, ela gera linguagens que não são livres de contexto
+	
+## Propriedades de Fechamento das Linguagens Livres de Contexto
+- Queremos provar que as operações nas Linguagens Livres de Contexto também geram linguagens livres de contexto
+- Para isso, analisaremos cada operação uma por uma
+- Também usaremos gramáticas livres de contexto para representar as linguagens, pois é o único jeito que conhecemos de representar
+- Operações e Análise
+	- Estamos assumindo duas linguagens $L_1, L_2$ que são definidas, respectivamente, pelas gramáticas $G_1,G_2$
+	- Essas gramáticas tem os mesmos terminais mas o resto é (ou pode ser) todo diferente
+		- Pra praticalidade estamos assumindo $V_1 \cap V_2 = \emptyset$
+	- União
+		- A ideia é que a linguagem resultante aceite palavras tanto de $L_1$ quanto de $L_2$
+		- Podemos definir a gramática gerada pela união (que tem o símbolo feio $G_{\cup}$) como uma que tem um símbolo inicial $S$ bem safo
+			- Ideia: As regras adicionadas são $\{S \to S_1, S \to S_2\}$, onde $S_1 \in G_1$ e $S_2 \in G_2$
+			- Dessa forma a primeira computação é uma escolha, onde definimos se vamos lidar com $G_1$ ou $G_2$
+		- Definindo de forma mais clara
+			- $V_{\cup} = V_1 \cup V_2 \cup \{S\}$
+			- $S_{\cup} = S$
+			- $R_{\cup} = R_1 \cup R_2 \cup \{S \to S_1, S \to S_2\}$
+		- Status: Fechamento
+	- Concatenação
+		- O símbolo inicial é o ponto de entrada da função que é a gramática, seja regular ou livre de contexto
+		- Logo manipulação dos símbolos iniciais de duas linguagens nos dão a operação entre elas 
+		- Se queremos concatenar duas linguagens $L_1,L_2$ de forma que a primeira venha antes da segunda, manipulamos os iniciais dos dois dessa forma
+			- $S \to S_1S_2$
+			- Toda palavra de $L_1$ pode ser colocada antes e toda de $L_2$ pode ser colocada depois
+		- Definindo de forma mais clara
+			- $V_{\cdot} = V_1 \cup V_2 \cup \{S\}$
+			- $S_{\cdot} = S$
+			- $R_{\cdot} = R_1 \cup R_2 \cup \{S \to S_1S_2\}$
+		- Status: Fechamento
+	- Estrela de Kleene
+		- É a operação definida pela mistura dos dois acima
+		- Lidando com uma linguagem $L$, queremos mostrar como fazer essa manipulação
+		- Via símbolo inicial, temos que $S \to S_1S$, para podermos concatenar o quanto quisermos
+		- Mas também precisamos parar eventualmente, e fazemos isso com a regra $S \to \epsilon$
+		- Definindo de forma mais clara
+			- $V_{\\*} = V_1 \cup \{S\}$
+			- $S_{\\*} = S$
+			- $R_{\\*} = R_1 \cup \{S \to S_1S,S \to \epsilon\}$
+		- Status: Fechamento
+	- Interseção 
+		- A partir daqui as operações não vão fechar mais
+		- Antes garantimos que uniões, concatenações e estrelas de Kleene de gramáticas livres de contexto geram linguagens também livres de contexto
+		- Aqui obteremos resultado de que a operação PODE OU NÃO nos dar um resultado livre de contexto
+		- Provando isso: análise de duas linguagens
+			- $L_1 = \{a^nb^nc^m: m,n \geq 0\}$
+			- $L_2 = \{a^mb^nc^n: m,n \geq 0\}$
+			- Ambas são geradas por uma mesma linguagem livre de contexto
+			- Interseção das duas = Ponto onde elas são comuns / coexistem
+				- Isso seria quando o expoente é o mesmo!
+			- $L_1 \cap L_2 = \{a^nb^nc^n: n \geq 0\}$
+				- Provamos antes que esse bonitão NÃO É livre de contexto
+				- Uma exceção da regra prova que a regra é inválida
+		- Status: Não fechamento
+	- Complemento
+		- Comprovamos por contradição usando a Lei de Morgan
+			- Lei de Morgan: $L_1 \cap L_2 = \overline{(\overline{L_1} \cup \overline{L_2})}$
+			- Contradição: Complemento de uma linguagem é fechado
+			- Provando
+				- Se o complemento é fechado, $\overline{L_1},\overline{L_2}$ são fechados
+				- A união deles também porque união é fechada
+				- O complemento disso tudo é fechado porque estamos supondo que sim
+				- Mas se isso é fechado, como podemos dizer que isso iguala interseção, que NÃO É fechado?!
+				- Resultado: Fake News
+		- Status: Não fechamento
+	- Diferença
+		- Comprovamos por contradição usando a definição de complemento
+		- Definição: $\overline{L} = \Sigma^* - L$
+		- Suposição: Diferença é fechamento
+		- Provando
+			- $\Sigma^*$ é uma linguagem regular, e linguagens regulares são livres de contexto
+			- Assumimos que diferença é safe, logo $\Sigma^* - L$ é fechamento
+			- Mas como pode se isso iguala $\overline{L}$?
+			- Resultado: Fake News
+		- Status: Não fechamento

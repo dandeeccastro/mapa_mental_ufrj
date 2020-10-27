@@ -1,0 +1,27 @@
+# Gramáticas 
+- Gramáticas são uma nova estrutura
+- Possuem classes, uma delas são as gramáticas regulares (ou gramáticas lineares à direita)
+	- Com elas podemos descrever Linguagens Regulares 
+- Definindo gramáticas de forma geral com quatro itens
+	- $G = (T,V,S,R)$, onde 
+		- $T$ é um conjunto finito de símbolos chamados símbolos terminais 
+		- $V$ é um conjunto finito de símbolos chamados de variáveis ou símbolos não terminais
+		- $S \in V$ é o símbolo inicial
+		- $R$ é um conjunto de regras
+	- Definindo uma regra de uma gramática
+		- Formato: $u \to v$, como uma transformação
+			- $u,v$ são palavras no alfabeto $(T \cup V)$
+			- $u$ tem que conter um símbolo de $V$, os não terminais
+		- Se eu tenho duas palavras $x,y$ que pertencem à união dos alfabetos, eu posso definir uma operação de derivação 
+			- Notação: $x \Rightarrow y$
+			- Condições para que aconteça: 
+				- Ter uma regra em $R$ que faça $u \to v$ 
+				- Definir que $u$ é subpalavra de $x$ e $v$ é subpalavra de $y$
+					- Em matematiquês: $x = x'.u.x''$ e $y = x'.v.x''$
+			- Podemos transformar $x$ em $y$ via uma derivação transformando essas duas subpalavras por via da regra em $R$
+	- Linguagem gerada por uma gramática
+		- Conjunto de palavras definidos por essa regra aqui: $L(G) = \{w \in T* : S \Rightarrow^* w\}$
+		- Em português, palavras formadas só de símbolos terminais que tenham alguma derivação em $G$ a partir do símbolo inicial $S$
+			- Tipo, de $S$ você deriva várias vezes até chegar na palavra, que tem que ser composta só de símbolos terminais? ($T^*$)
+			- Entendi foi nada, tenho que revisar isso aqui	
+		

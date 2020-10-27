@@ -1,0 +1,17 @@
+# Multicast de Ordem total e causal com relógios lógicos
+- Multicast de ordem total: Todas as mensagens entregues na mesma ordem para todos os processos do mesmo grupo
+	- Exemplo: atualizando o banco de dados replicado
+		- A consulta é feita pra base mais próxima, mas a atualização tem que ser feita, na mesma ordem, para todas as réplicas
+		- Se tiver dois bancos replicados e dois usuários, um perto do primeiro e o outro perto do segundo, a ordem de comandos tem que ser a mesma mesmo que a mensagem de um chegue numa réplica antes da outra
+		- Possível solução: usemos o [[Relógios Lógicos|Relógio de Lamport]] para ordenar as mensagens antes de passar ela para a aplicação
+ - Multicast de entrega causal: Todas as mensagens entregues respeitam a relação de causa-efeito
+	 - Queremos que mensagens que causam o envio de outras mensagens sejam ordenadas certinho
+	 - Para isso provavelmente queremos usar o [[Vetor de Timestamp]]
+	 - Mas com pequenas alterações 
+		 - Ao invés de todos os eventos incrementarem o timestamp, o único que faz isso é o evento de mensagem
+		 - Isso só porque estamos lidando com uma aplicação de multicasting causal
+		 - Qual a condição para entregar a mensagem para aplicação?
+			 - Quando um processo recebe uma mensagem, ele verifica se tem mensagens causalmente precedentes que ainda não foram recebidas. Se sim, ele espera para entregar
+			 - Como ele verifica? Duas condições
+				 - O contador do VT dele e o da mensagem que vem tem diferença de 1
+				 - Se pra todo processo que não é ele, o valor em VT dele é menor ou igual ao recebido pelo outro processo

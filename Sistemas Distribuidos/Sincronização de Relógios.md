@@ -1,0 +1,30 @@
+# Sincronização de Relógios
+- Sistemas tem que ter uma noção global de tempo, porque não temos mais um único relógio
+- Importância: como garantir a ordem de mensagens sem um relógio global? 
+	- Relógios internos não são uma fonte de verdade
+	- Defasagens do relógio interno não afetam processos internos porque todos sabem o valor dele ao mesmo tempo
+- Exemplo de problemas de relógio
+	- Comando make compila arquivos da linguagem C
+	- Ele é inteligente: se o arquivo fonte não foi alterado desde a última vez que eu fui rodado, não vou recompilar ele
+		- Poupa tempo de vida de desenvolvedores
+	- Mas e se temos defasagem de tempo num make distribuído?
+	- Máquina com código fonte salvou o .c no tempo $x$ (baseado no relógio interno dela) e a máquina que compilou gerou o .o no tempo $y$
+		- Mas conferindo os valores, $y < x$, então o arquivo foi compilado antes do código fonte ser salvo???
+	- Podemos ter casos em que a defasagem do make não reflete a defasagem real, então arquivos não são compilados!
+- Duas formas básica de sincronizar
+	- Cada máquina muda seu relógio local com os relógios dos outros
+	- Existe uma máquina "Big Ben" que tem o relógio do processo 
+- Algoritmos de síncronização em sistemas distribuídos
+	- Temos o tempo global $t$ e a função $C_p(t)$ que retorna o valor do relógio local interno de uma máquina $p$
+	- Para uma sincronização interna entre máquinas de um SD, procuramos manter o desvio dos relógios entre o seguinte limite
+		- Limite: $\pi: \forall t, \forall p,q:|C_p(t) - C_q(t)| \leq \pi$
+	- Para uma sincronização externa, a acurácia dos relógios é mantida dentro do seguinte limite
+		- Limite: $\alpha : \forall t, \forall p : |C_p(t) - t| \leq \alpha$
+	- Sincronizações tem que ser periódicas para garantir que nada rolou errado durante um certo período de tempo
+- Um exemplo de algorítmo interno é o Algoritmo de Berkeley
+	- Num conjunto de máquinas, uma dela roda um daemon de tempo
+	- Ela informa o valor dela para as outras máquinas
+	- Ela recebe a defasagem de cada máquina (+15ms, -10ms)
+	- Ele calcula a média da defasagem e envia o ajuste de volta
+- Servidores de tempo: requisições para ele que retornam o tempo
+	- Precisa se considerar o delay até que a mensagem chegue para você

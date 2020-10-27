@@ -1,0 +1,34 @@
+# Algoritmos de Eleição de Líder
+- Aplicações precisam que um processo seja mais que os outros, como um líder ou gerente
+- Esse processo de eleição escolhe quem vai ser o líder 
+	- Esse procedimento pode ser feito várias vezes quando necessário
+	- Assume que os processos tem um identificador único
+	- Todos os processos tem que concordar com o novo líder (sem resultados errados né)
+- Algoritmo de Intimidação (bully)
+	- O processo ativo com identificador maior é sempre escolhido como líder
+		- Pra isso todos os processos precisam conhecer qual o identificador dos seus colegas
+		- Processos não conhecem quem tá ou não ativo
+		- Se o processo líder falha e um processo tenta acessar e não consegue, uma nova eleição é feita
+	- Funcionamento do algoritmo
+		- Um processo envia uma mensagem de eleição para todos os processos com id acima dele
+		- Se nenhum responder, o processo em questão vira o novo líder
+		- Se um responder, esse processo sai da eleição de forma humilhante
+		- Quem se manteve no sistema continua o processo, verificando os acima dele
+		- Se chegarmos num processo em que ninguém responda, ele é o novo lider e avisa isso para todos os outros processos.
+		- Se um nó falhar, o retorno dele gera uma nova eleição
+- Algoritmo probe/echo
+	- Os nós só conhece os vizinhos mais próximos e os IDs deles
+	- A mensagem é disseminada para todos os nós até que um novo líder seja escolhido, pelo que eu entendi
+		- Algoritmo ideal pra redes sem topologia fixa (ad hoc, algo legal de pesquisar depois)
+		- Possibilidade de usar categorias diferentes para escolha do líder
+		- Implementa uma busca em profundidade distribuída (???)
+		- Pode ser usado para resolver problemas que não necessariamente estão envolvidos com coisas de líder
+			- Exemplo: descobrindo topologia da rede
+	- Funcionamento para a escolha do líder:
+		- Qualquer processo pode enviar a mensagem de eleição
+		- Quando o processo recebe a mensagem, ele associa o mensageiro como nó pai
+		- Encaminha a mensagem para os processos vizinhos (tirando o nó pai)
+		- Se receber mensagens repetidas, ele responde com um ACK
+		- Depois que todos os vizinhos responderem (que eu sei quem são pq sim), eu envio pro nó pai o atributo, que no caso é o ID
+		- A pessoa com ID maior se torna o líder
+	- O algoritmo monta uma árvore numa rede desconhecida, o que é bem foda, e com isso ele também descobre os valores de geral pra eleger o líder

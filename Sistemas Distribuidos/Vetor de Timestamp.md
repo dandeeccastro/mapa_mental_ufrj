@@ -1,0 +1,26 @@
+# Vetor de Timestamp
+- Relógio de Lamport não caracteriza completamente a causalidade entre dois eventos
+	- Os relógios avançam independente ou por mensagens, mas não registram a fonte do incremento
+	- Dá pra fizer que se $a \to b$ , então o relógio lógico de $a$ é menor que o de $b$, mas a recíproca NÃO É VERDADEIRA
+- Plano: encontrar uma função $f$ tal que $f(a) < f(b)$ signifique $a \to b$
+	- Aqui que entra a noção do Vetor de Timestamp, que expande o Relógio de Lamport
+- Definindo o vetor de timestamp
+	- Se temos N processos, usamos um vetor de N elementos
+	- Cada posição do vetor representa o contador do processo em questão 
+		- Ex: Processo 1 lida com a primeira posição do vetor
+	- Todos os vetores começam com zero 
+	- Cada evento que um processo faz (interno e envio de mensagem) ele aumenta seu contador
+	- Quando ele envia uma mensagem, ele envia sua versão do vetor para os outros
+	- Quando um processo recebe o vetor, ele
+		- Incrementa o valor na sua posição
+		- Atualiza as outras posições via máximo entre os dois valores 
+			- Isso é legal porque o processo meio que sabe sobre processos que não estão envolvidos com a comunicação
+- Por que ele funciona?
+	- Repara que pra processos A e B, se , pra todo valor do vetor de timestamp de A, o de B for menor ou igual a ele, então B aconteceu antes de A
+	- E mais: se o valor do vetor de A mudou na posição B e outros processos, sabemos dizer que ele recebeu uma mensagem
+	- Detalhe: matematiquês do porque 
+		- Para toda posição dos dois vetores, as seguintes condições tem que ser verdadeiras
+			- Os valores em um vetor A são menores ou iguais a B
+			- Existe um valor em A que é menor (não igual) ao de B
+		- Se houver uma quebra de regra disso, significa que houve concorrência
+		
