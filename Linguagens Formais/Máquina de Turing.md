@@ -1,0 +1,106 @@
+# Máquina de Turing
+
+- Terceiro modelo computacional, usado nos computadores atuais 
+	- Superando os autômatos finitos e autômatos de pilha
+
+- Máquina de Turing
+	- Modelo matemático simples mas preciso de computabilidade
+	- Nos permite entender os limites do que pode ser resolvido algoritmicamente 
+	- Também nos dá margem para entender os requisitos de tempo e espaço (memória) para resolver um problema 
+	- Máquina de Turing -> Teoria da Computabilidade e Teoria da Complexidade
+		- Teoria da Computabilidade: Distinção entre problemas solúveis algoritmicamente (decidíveis) e os insolúveis (indecidíveis)
+		- Teoria da Complexidade: Distingue os problemas quanto à eficiência concreta de resolução dele, dividindo eles entre tratáveis ou intratáveis
+	- História da máquina de Turing
+		- Proposta feita pelo Alan Turing com 24 anos em 1936
+		- Nasceu em 12 e morreu em 54, deu pau em nazista como criptoanalista na Segunda Guerra
+		- Também descobriu um problema sem solução algorítmica, o Problema da Parada, e lançou ele junto com o artigo sobre a máquina
+
+- Descrevendo Máquina de Turing em termos informais 
+	- Partes da máquina de Turing
+		- Fita dividida em casas com símbolos dentro delas, que podem estar em brancos ou não.
+		- Casa na ponta da esquerda da fita tem um símbolo especial de início/término, pra direita ela pode ir ad infinitum
+			- Óbvio que não é infinito na real, mas estamos lidando com o modelo matemático disso aí
+			- Pode chamar de semi infinita porque é infinita pra direita e não para esquerda
+			- Símbolo da esquerda não pode ser sobrescrevido nem escrito depois do lado esquerdo 
+		- Tem uma seta apontando para uma casa por vez, que pode ir para a esquerda ou direita
+			- Essa seta pode ler ou escrever nas casas da fita 
+			- É diferente das outras máquinas, porque essa escreve!
+		- Relógio com cada hora sendo um estado da máquina 
+		- Transições de estado na máquina de Turing
+			- Dado o símbolo que a seta tá lendo na fita e o estado atual, a máquina muda de estado e realiza uma ação na fita
+		- Máquina pode fazer 3 operações: 
+			- Move para a esquerda uma vez
+			- Move para a direita uma vez 
+			- Manter a seta parada e escrever um novo símbolo na casa atual da fita
+
+- Descrição formal da Máquina de Turing
+	- Uma máquina é uma 6-upla $M = (\Sigma_0,\Sigma,Q,q_0,F,\delta)$, onde:
+		- $\Sigma_0$ é o alfabeto de entrada
+		- $\Sigma$ é o alfabetio da fita
+		- $Q$ é o conjunto finito de estados
+		- $q_0$ é o estado inicial
+		- $F$ é o conjunto de estados finais ou estados de parada
+		- $\delta : (Q - F) \times \Sigma \to Q \times ((\Sigma - \{ Símbolo esquero da fita \}) \cup \{\leftarrow , \rightarrow\})$
+			- Recebe um estado não final e um símbolo e retorna um novo estado e um símbolo novo sendo escrito ou um movimento pra direita ou esquerda
+	- Máquina sempre para quando chega num estado final, por isso são chamados de estados de parada
+	- Computações podem nunca parar btw
+	- Importante observar o comportamento esperado com o símbolo especial 
+		- Única coisa que dá pra fazer é ir para a direita quando a seta tá na extremidade direita
+		- Independente da máquina de Turing, sempre que tiver no lado esquerdo ele tem que ir para a direita
+	- Diferença do alfabeto da entrada vs alfabeto da fita
+		- Alfabeto de entrada: símbolos para serem colocados dentro da máquina para serem processadas
+		- Alfabeto de pilha: símbolos para serem escritos na fita 
+		- Existem restrições sobre o que pode ser colocado nesses alfabetos
+			- Símbolo da esquerda NÃO PODE FICAR NO ALFABETO DE ENTRADA
+			- O alfabeto da fita tem que ter todos os símbolos do alfabeto de entrada
+				- E pode colocar uns itens extra também
+				- Mas tem que ter o triângulo e a casa em branco 
+			- Os símbolos de seta da esquerda e direita não podem estar no alfabeto da fita
+
+- Computação na Máquina de Turing
+	- Computação começa com símbolo inicial $q_0$,
+		- Fita com o triângulo seguida de espaços em branco ou ocupadas por símbolos do alfabeto de entrada
+		- Números finitos de casas que podem ser preenchidos por símbolos desse alfabeto 
+		- Temos que especificar em qual casa começa a computação 
+			- Se nenhuma for especificada, a convenção é que começe pelo triângulo
+		- Rola a sequência de transições e transformações na fita
+		- Se a máquina nunca chegar num estado final, ela nunca para
+
+- Máquina de Turing e Linguagens
+	- Existem máquinas de turing específicas chamadas Decisores
+		- Possuem dois estados finais, o de aceitação e o de negação, que podemos chamar de s e de n
+		- Ela é feita de forma que sempre vai dar s ou n
+	- Linguagens recursivas são as que são geradas por Máquinas de Turing Decisoras 
+		- Toda palavra de L, quando processada pela máquina de Turing, termina em s
+		- Consequentemente, toda a palavra de não pertence à L termina com estado n 
+	- Simples mostrar que o grupo de linguagens recursivas contém as livres de contexto e as regulares
+		- Para isso, temos que simular um autômato finito e de pilha usando uma máquina de Turing decisora
+		- Simulando AFD com Máquina de Turing
+			- Os estados do AFD são os estados da máquina
+			- Processamos os itens mudando o sinal por um sinal que represente que ele foi consumido
+			- Avançamos pra direita e repetimos, mudando o estado que nem o AFD
+			- Chegamos num item vazio?
+				- s se estamos num estado final do AFD
+				- n se naõ estamos num estado final do AFD
+		- Simulando AFND com Máquina de Turing
+			- Tem como fazer usando máquinas de Turing não determinísticas, mas é complicado mostrar isso
+			- Fé e vamo q vamo
+	- Existem linguagens recursivas que não são livres de contexto nem regulares
+	- Aceitar vs Decidir
+		- Uma linguagem decidida por uma máquina de Turing é a que é aceita por uma decisora com símbolo positivo
+		- Uma linguagem aceita por uma máquin de Turing é a que as palavras fazem a máquina chegar no estado final
+			- Não precisa ser decisora que decide a linguagem, pode não decidir
+			- Pode existir linguagem que aceita mas não decide
+	- Linguagem recursivamente enumerável ou semi decidível
+			- Linguagem aceita por uma máquina de turing M 
+			- Linguagens recursivamente enumeráveis são mais abrangentes que as enumeráveis
+			- Dá pra gerar uma recursivamente enumerável de uma recursiva
+
+- Hiearquia de Chomsky
+	- A ideia de que linguagens contém outras gera uma hierarquia, do conjunto maior e seus subconjuntos
+	- De maior para menor: Ling. Rec. En. -> Ling. Rec. -> Ling. Livre de Cont. -> Ling. Regul.
+
+- Máquina de Turing e Funções
+	- A ideia é simples: podemos usar uma máquina de Turing para resolver funções
+	- Dada uma máquina de Turing M e uma função f, podemos dizer que:
+		- f é uma função computável se a palavra w, processada por M, retorna f(w) na fita

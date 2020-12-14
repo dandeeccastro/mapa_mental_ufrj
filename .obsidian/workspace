@@ -6,27 +6,47 @@
       {
         "id": "84a30d9e42b58ede",
         "type": "leaf",
+        "dimension": 37.04128440366973,
         "active": true,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Energia Potencial.md",
+            "file": "Estudo Dirigido 1.md",
             "mode": "source"
           }
         },
         "group": "ae4df201198ebfcd"
       },
       {
-        "id": "710b6a666f5bc03d",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Energia Potencial.md",
-            "mode": "preview"
+        "id": "76998ebd6d193a6a",
+        "type": "split",
+        "dimension": 62.95871559633027,
+        "children": [
+          {
+            "id": "710b6a666f5bc03d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Estudo Dirigido 1.md",
+                "mode": "preview"
+              }
+            },
+            "group": "ae4df201198ebfcd"
+          },
+          {
+            "id": "b468bdc283cf83fd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Álgebra Linear Algorítmica/Vetores.md",
+                "mode": "preview"
+              }
+            }
           }
-        },
-        "group": "ae4df201198ebfcd"
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -53,7 +73,12 @@
             "state": {
               "type": "search",
               "state": {
-                "query": ""
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
               }
             }
           }
@@ -61,8 +86,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "f2d6d08b181112a1",
@@ -78,7 +102,12 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Energia Potencial.md"
+                "file": "Estudo Dirigido 1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
               }
             }
           }
@@ -100,19 +129,18 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304,
-    "collapsed": true
+    "width": 304
   },
   "lastOpenFiles": [
-    "Energia Potencial.md",
+    "Estudo Dirigido 1.md",
+    "Álgebra Linear Algorítmica/Vetores.md",
     "Untitled.md",
+    "Energia Potencial.md",
     "Algoritmos de Eleição de Lider.md",
     "Sistemas Distribuidos/Multicast de Ordem total e causal com relógios lógicos.md",
     "Gramáticas.md",
     "Gramáticas Livres de Contexto.md",
     "Exclusão Mútua Distribuída.md",
-    "Relógios Lógicos.md",
-    "Sincronização de Relógios.md",
-    "Vetor de Timestamp.md"
+    "Relógios Lógicos.md"
   ]
 }
